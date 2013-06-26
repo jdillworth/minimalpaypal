@@ -1,5 +1,6 @@
-# Django settings for minimalpaypal project.
+import os
 
+FILE_PATH = os.path.split(__file__)[0]
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'minimalpaypal.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(FILE_PATH, 'minimalpaypal.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -145,7 +146,7 @@ LOGGING = {
     }
 }
 
-with open('api-keys.txt') as f:
+with open(os.path.join(FILE_PATH, 'api-keys.txt')) as f:
     from ConfigParser import ConfigParser
     cfp = ConfigParser()
 
